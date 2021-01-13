@@ -1,12 +1,14 @@
 <template>
   <div class="vknob">
-    <div class="vknob__wrap" :style="{backgroundImage:`url(${imgURL.knobSplitterUrl})`}">
-      <div class="vknob__control"
-        :style="{ backgroundImage:`url(${imgURL.knobControlUrl})`, transform: `rotate(${knobValue}deg)` }">
-        Fggg
-      </div>
+    <div class="vknob__label">{{ label }}</div>
+    <div class="vknob__wrap" 
+      :style="{backgroundImage:`url('${knobSplitterUrl}}')`}"      
+      >
     </div>
-    <div class="vknob__lable">{{ lable }}</div>
+    <div class="vknob__control"
+      @mousemove="emitChange"
+      :style="{ backgroundImage:`url('${knobControlUrl}')`, transform: `rotate(${knobValue}deg)` }">
+    </div>    
   </div>
 </template>
 
@@ -18,6 +20,7 @@ export default {
     knobValue: {
       type: Number,
       required: true,
+      default: 0
     },
     // Метод управляющий значением
     changeValue: {
@@ -43,22 +46,76 @@ export default {
       default: false
     },
     // НАзвание регулятора
-    lable: {
+    label: {
       type: String,
       // required: true,
     },
-    imgURL: {
-      // Ссылка на изображение регулятора
-      knobControlUrl: String,
-      // Ссылка на изображение делителей(указателей уровня)
-      knobSplitterUrl: String,
+    // Ссылка на изображение регулятора
+    knobControlUrl: {
+      type: String,
+      required: true
+    },
+    // Ссылка на изображение делителей(указателей уровня)
+    knobSplitterUrl: {
+      type: String,
+      required: true
     },
 
   },
+
+  methods: {
+    // Эмитим событие наверх
+    emitChange (e) {
+      // Передаём координаты мыши
+      this.$emit('changeValue', e.clientY);
+
+    }
+  }
 };
 </script>
+<style scoped>
 
-<style></style>
+  .vknob {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    margin: 20% auto;
+    position: relative;
+  }
+  .vknob__wrap {
+    display: flex;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+  .vknob__label {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #075cac;
+    z-index: 1;
+  }
+  .vknob__control {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    background-size: cover;
+    transition: all 0.3s ease-out;
+  }
+</style>
 
 <style scoped>
   /* TODO  */
