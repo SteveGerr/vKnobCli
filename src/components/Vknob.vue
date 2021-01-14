@@ -1,14 +1,15 @@
 <template>
   <div class="vknob">
     <div class="vknob__label">{{ label }}</div>
-    <div class="vknob__wrap" 
-      :style="{backgroundImage:`url('${knobSplitterUrl}}')`}"      
+    <div class="vknob__wrap"
+      :style="{backgroundImage:`url('${knobSplitterUrl}}')`}"
       >
     </div>
-    <div class="vknob__control"
-      @mousemove="emitChange"
-      :style="{ backgroundImage:`url('${knobControlUrl}')`, transform: `rotate(${knobValue}deg)` }">
-    </div>    
+    <div class="vknob__control-wrap" @mousemove="emitChange">
+      <div class="vknob__control"
+        :style="{ backgroundImage:`url('${knobControlUrl}')`, transform: `rotate(${knobValue}deg)` }">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -67,7 +68,7 @@ export default {
     // Эмитим событие наверх
     emitChange (e) {
       // Передаём координаты мыши
-      this.$emit('changeValue', e.clientY);
+      this.$emit('changeValue', e);
 
     }
   }
@@ -113,7 +114,14 @@ export default {
     height: 200px;
     z-index: 1;
     background-size: cover;
-    transition: all 0.3s ease-out;
+    transition: all 1s ease-out;
+  }
+  .vknob__control-wrap {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ffffff;
+    z-index: 2;
   }
 </style>
 
