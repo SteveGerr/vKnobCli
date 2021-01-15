@@ -74,7 +74,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style  scoped>
 
   .vknob {
     display: flex;
@@ -113,14 +113,26 @@ export default {
     width: 200px;
     height: 200px;
     z-index: 1;
-    background-size: cover;
+    /* background-size: cover; */
+    background-color: cadetblue;
+    border-radius: 50%;
     transition: all 1s ease-out;
+    position: relative;
+    box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.66);
+  }
+  .vknob__control::after {
+    content: "";
+    width: 200px;
+    height: 3px;
+    background: cornsilk;
+    position: absolute;
+    top: 50%;
   }
   .vknob__control-wrap {
     display: flex;
     width: 200px;
     height: 200px;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
     z-index: 2;
   }
 </style>
