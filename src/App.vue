@@ -46,18 +46,22 @@ export default {
       // console.log("currVal", currVal);
       console.log(this.knobValueDeg);
 
-      // Ежели предыдущее значение меньше чем текущее
+      // Ежели предыдущее значение меньше чем текущее,
+      // увелчиваем угол
       if (prevVal < currVal) {
         this.knobValueDeg+=3;
       console.log("after", this.knobValueDeg);
 
         if (this.knobValueDeg < 0) {
+          console.log("this.knobValueDeg < 0", this.knobValueDeg);
           this.knobValueDeg = 0
         }
       }
       if (prevVal > currVal) {
         this.knobValueDeg-=3;
         if (this.knobValueDeg > 360) {
+          console.log("this.knobValueDeg > 0", this.knobValueDeg);
+
           this.knobValueDeg = 360
         }
       }

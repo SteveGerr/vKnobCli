@@ -116,7 +116,7 @@ export default {
     /* background-size: cover; */
     background-color: cadetblue;
     border-radius: 50%;
-    transition: all 1s ease-out;
+    transition: all 1s ease;
     position: relative;
     box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.66);
   }
