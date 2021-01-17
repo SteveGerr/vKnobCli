@@ -23,10 +23,10 @@ export default {
   data() {
     return {
       vknobLable: 'Reverb',
-      controlLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Cercle_bleu_barre.svg/220px-Cercle_bleu_barre.svg.png',
+      controlLink: '',
       splitterLink: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIzN9ZAPlkO_nV9FePzUo1u9vzHovk9vTQQw&usqp=CAU',
       knobValueData: 0,
-      knobValueDeg: -120,
+      knobValueDeg: 0,
     }
   },
 
@@ -46,18 +46,22 @@ export default {
       // console.log("currVal", currVal);
       console.log(this.knobValueDeg);
 
-      // Ежели предыдущее значение меньше чем текущее
+      // Ежели предыдущее значение меньше чем текущее,
+      // увелчиваем угол
       if (prevVal < currVal) {
-        this.knobValueDeg+=5;
+        this.knobValueDeg+=3;
       console.log("after", this.knobValueDeg);
 
-        if (this.knobValueDeg < -120) {
-          this.knobValueDeg = -120
+        if (this.knobValueDeg < 0) {
+          console.log("this.knobValueDeg < 0", this.knobValueDeg);
+          this.knobValueDeg = 0
         }
       }
       if (prevVal > currVal) {
-        this.knobValueDeg-=5;
+        this.knobValueDeg-=3;
         if (this.knobValueDeg > 360) {
+          console.log("this.knobValueDeg > 0", this.knobValueDeg);
+
           this.knobValueDeg = 360
         }
       }
